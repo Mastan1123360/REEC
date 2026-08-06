@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 240 10% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 10%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 10%;
+  --primary: 245 75% 59%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 5% 96%;
+  --secondary-foreground: 240 10% 10%;
+  --muted: 240 5% 96%;
+  --muted-foreground: 240 4% 46%;
+  --accent: 240 5% 94%;
+  --accent-foreground: 240 10% 10%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 240 6% 90%;
+  --input: 240 6% 90%;
+  --ring: 245 75% 59%;
+  --radius: 0.5rem;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+.dark {
+  --background: 240 10% 6%;
+  --foreground: 240 5% 92%;
+  --card: 240 9% 9%;
+  --card-foreground: 240 5% 92%;
+  --popover: 240 9% 9%;
+  --popover-foreground: 240 5% 92%;
+  --primary: 245 80% 68%;
+  --primary-foreground: 240 10% 6%;
+  --secondary: 240 6% 14%;
+  --secondary-foreground: 240 5% 92%;
+  --muted: 240 6% 14%;
+  --muted-foreground: 240 4% 62%;
+  --accent: 240 6% 16%;
+  --accent-foreground: 240 5% 92%;
+  --destructive: 0 63% 42%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 240 6% 18%;
+  --input: 240 6% 18%;
+  --ring: 245 80% 68%;
+}
+
+* { border-color: hsl(var(--border)); }
+body { background: hsl(var(--background)); color: hsl(var(--foreground)); }
+
+/* ---- lesson prose ---- */
+.reec-prose h1, .reec-prose h2, .reec-prose h3 { font-weight: 600; letter-spacing: -0.01em; }
+
+/* ---- expandable reveal sections (hints / solutions) ---- */
+details.reveal-section {
+  margin: 0.6em 0;
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.4rem;
+  padding: 0;
+  background: hsl(var(--muted) / 0.3);
+}
+details.reveal-section summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 0.5em 0.9em;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: hsl(var(--muted-foreground));
+  user-select: none;
+}
+details.reveal-section summary::-webkit-details-marker { display: none; }
+details.reveal-section summary::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: 0.4em;
+  transition: transform 0.15s ease;
+}
+details.reveal-section[open] summary::before { transform: rotate(90deg); }
+details.reveal-section[open] summary {
+  border-bottom: 1px solid hsl(var(--border));
+  color: hsl(var(--foreground));
+}
+details.reveal-section p { margin: 0; padding: 0.75em 0.9em; }
+
+/* ---- historical context timeline treatment ---- */
+.reec-timeline { padding-left: 1.1rem; border-left: 2px solid hsl(var(--border)); }
+.reec-timeline p { position: relative; }
+.reec-timeline p::before {
+  content: "";
+  position: absolute;
+  left: -1.42rem;
+  top: 0.5em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: hsl(var(--primary));
+}
+
+
+.reec-prose p { margin-top: 0.9em; margin-bottom: 0.9em; }
+.reec-prose ul, .reec-prose ol { margin: 0.9em 0; padding-left: 1.4em; }
+.reec-prose li { margin: 0.3em 0; }
+.reec-prose li > ul, .reec-prose li > ol { margin: 0.3em 0; }
+.reec-prose blockquote {
+  border-left: 2px solid hsl(var(--primary) / 0.5);
+  padding-left: 1rem;
+  color: hsl(var(--foreground) / 0.85);
+  font-style: italic;
+}
+.reec-prose code {
+  background: hsl(var(--muted));
+  border-radius: 0.25rem;
+  padding: 0.1em 0.4em;
+  font-size: 0.85em;
+  font-family: var(--font-mono);
+}
+.reec-prose pre {
+  background: hsl(var(--muted) / 0.6);
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.85em;
+  line-height: 1.6;
+}
+.reec-prose pre code { background: transparent; padding: 0; }
+.reec-prose table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.9em; }
+.reec-prose th, .reec-prose td { border: 1px solid hsl(var(--border)); padding: 0.5em 0.75em; text-align: left; }
+.reec-prose th { background: hsl(var(--muted) / 0.5); font-weight: 600; }
+.reec-prose a { color: hsl(var(--primary)); text-decoration: underline; text-underline-offset: 2px; }
+.reec-prose hr { border-color: hsl(var(--border)); margin: 2em 0; }
+
+::selection { background: hsl(var(--primary) / 0.25); }
+
+/* ---- Shiki dual-theme (light/dark) code blocks ---- */
+.shiki, .shiki span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg) !important;
+}
+.dark .shiki, .dark .shiki span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg) !important;
+}
+.shiki {
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.85em;
+  line-height: 1.65;
+}
